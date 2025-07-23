@@ -21,7 +21,16 @@ export default defineNuxtConfig({
         }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+        // Standard favicons with larger sizes
+        { rel: 'icon', type: 'image/png', href: '/TypingRushLogo.png', sizes: '32x32' },
+        { rel: 'icon', type: 'image/png', href: '/TypingRushLogo.png', sizes: '96x96' },
+        { rel: 'icon', type: 'image/png', href: '/TypingRushLogo.png', sizes: '192x192' },
+        
+        // Apple Touch Icon (for iOS devices)
+        { rel: 'apple-touch-icon', href: '/TypingRushLogo.png', sizes: '180x180' },
+        
+        // Microsoft Tile Icon (for Windows devices)
+        { rel: 'msapplication-TileImage', href: '/TypingRushLogo.png' }
       ]
     }
   },
