@@ -23,7 +23,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBaseUrl: process.env.API_BASE_URL || 'http://localhost:5000'
+      apiBaseUrl: process.env.API_BASE_URL || 'https://mecanogameback.onrender.com'
     }
   }
 })
