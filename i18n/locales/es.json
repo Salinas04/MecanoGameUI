@@ -1,0 +1,30 @@
+{
+  "dashboard": {
+    "title": "Panel de Control",
+    "description": "Ver tus estadísticas y progreso de escritura",
+    "loading": "Cargando tus datos...",
+    "stats": "Estadísticas",
+    "gamesPlayed": "Partidas Jugadas",
+    "avgWpm": "PPM Promedio",
+    "bestWpm": "Mejor PPM",
+    "avgAccuracy": "Precisión Promedio",
+    "recentScores": "Puntuaciones Recientes",
+    "noScores": "Aún no hay puntuaciones. ¡Comienza a jugar para ver tus resultados!",
+    "date": "Fecha",
+    "wpm": "PPM",
+    "accuracy": "Precisión",
+    "errors": "Errores",
+    "period": {
+      "week": "Semana",
+      "month": "Mes",
+      "all": "Todo el Tiempo"
+    }
+  },
+  "common": {
+    "welcome": "Bienvenido",
+    "profile": "Perfil"
+  },
+  "game": {
+    "start": "Comenzar a Escribir"
+  }
+}

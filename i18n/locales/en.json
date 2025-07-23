@@ -1,0 +1,30 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "View your typing statistics and progress",
+    "loading": "Loading your data...",
+    "stats": "Statistics",
+    "gamesPlayed": "Games Played",
+    "avgWpm": "Average WPM",
+    "bestWpm": "Best WPM",
+    "avgAccuracy": "Average Accuracy",
+    "recentScores": "Recent Scores",
+    "noScores": "No scores yet. Start playing to see your results!",
+    "date": "Date",
+    "wpm": "WPM",
+    "accuracy": "Accuracy",
+    "errors": "Errors",
+    "period": {
+      "week": "Week",
+      "month": "Month",
+      "all": "All Time"
+    }
+  },
+  "common": {
+    "welcome": "Welcome",
+    "profile": "Profile"
+  },
+  "game": {
+    "start": "Start Typing"
+  }
+}
