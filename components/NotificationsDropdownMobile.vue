@@ -78,13 +78,11 @@ import { ref, onMounted, computed, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useApi } from '~/composables/useApi';
 import { useSocket } from '~/composables/useSocket';
-import { useToast } from 'vue-toastification';
 
 // Define emits
 const emit = defineEmits(['close']);
 
 const router = useRouter();
-const toast = useToast();
 
 const { 
   loading: apiLoading, 
@@ -126,8 +124,7 @@ async function loadNotifications() {
     const data = await getNotifications();
     notifications.value = data;
   } catch (err) {
-    toast.error('Failed to load notifications');
-    console.error(err);
+    console.error('Failed to load notifications:', err);
   } finally {
     loading.value = false;
   }
@@ -147,8 +144,7 @@ async function markAllAsRead() {
       notification.read = true;
     });
   } catch (err) {
-    toast.error('Failed to mark notifications as read');
-    console.error(err);
+    console.error('Failed to mark notifications as read:', err);
   }
 }
 

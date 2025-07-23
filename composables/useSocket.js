@@ -2,13 +2,11 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { io } from 'socket.io-client';
 import { useRuntimeConfig } from 'nuxt/app';
 import { useAuth } from './useAuth';
-import { useToast } from 'vue-toastification';
 
 export function useSocket() {
   const config = useRuntimeConfig();
   const baseUrl = config.public.apiBaseUrl;
   const { token, user } = useAuth();
-  const toast = useToast();
   
   const socket = ref(null);
   const isConnected = ref(false);
@@ -78,14 +76,13 @@ export function useSocket() {
     socket.value.on('friend_request', (data) => {
       friendRequests.value.push(data.request);
       
-      // Show toast notification
-      toast.info(`${data.sender.username} sent you a friend request`);
+      // Log notification
+      console.log(`Friend request received from ${data.sender.username}`);
     });
     
     socket.value.on('friend_request_accepted', (data) => {
-      
-      // Show toast notification
-      toast.success(`${data.friend.username} accepted your friend request`);
+      // Log notification
+      console.log(`${data.friend.username} accepted your friend request`);
     });
     
     // Chat message events
@@ -106,8 +103,8 @@ export function useSocket() {
       if (currentChat.value === senderId) {
         markMessagesAsRead(senderId);
       } else {
-        // Show toast notification
-        toast.info(`New message from ${sender.username}`);
+        // Log notification
+        console.log(`New message from ${sender.username}`);
       }
     });
     
@@ -137,7 +134,7 @@ export function useSocket() {
     // Error events
     socket.value.on('error', (err) => {
       error.value = err;
-      toast.error(err);
+      console.error('Socket error:', err);
     });
     
     // Connect to socket

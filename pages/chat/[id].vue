@@ -108,10 +108,8 @@ import { useRoute } from 'vue-router';
 import { useApi } from '~/composables/useApi';
 import { useSocket } from '~/composables/useSocket';
 import { useAuth } from '~/composables/useAuth';
-import { useToast } from 'vue-toastification';
 
 const route = useRoute();
-const toast = useToast();
 const { user } = useAuth();
 const userId = ref(user.value?._id);
 
@@ -190,12 +188,10 @@ async function loadFriendProfile() {
       friend.value = foundFriend;
     } else {
       // If friend not found in the list, show an error
-      toast.error('Friend not found');
       console.error('Friend not found in friends list');
     }
   } catch (err) {
-    toast.error('Failed to load friend profile');
-    console.error(err);
+    console.error('Failed to load friend profile:', err);
   }
 }
 
@@ -222,8 +218,7 @@ async function loadChatMessages() {
     await nextTick();
     scrollToBottom();
   } catch (err) {
-    toast.error('Failed to load chat messages');
-    console.error(err);
+    console.error('Failed to load chat messages:', err);
   } finally {
     loading.value = false;
   }
@@ -249,8 +244,7 @@ async function sendMessage() {
     await nextTick();
     scrollToBottom();
   } catch (err) {
-    toast.error('Failed to send message');
-    console.error(err);
+    console.error('Failed to send message:', err);
   }
 }
 

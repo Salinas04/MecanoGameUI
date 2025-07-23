@@ -179,10 +179,8 @@ import { ref, onMounted, computed } from 'vue';
 import { useApi } from '~/composables/useApi';
 import { useSocket } from '~/composables/useSocket';
 import { useRouter } from 'vue-router';
-import { useToast } from 'vue-toastification';
 
 const router = useRouter();
-const toast = useToast();
 
 const { 
   loading: apiLoading, 
@@ -220,8 +218,7 @@ async function loadFriends() {
   try {
     friends.value = await getFriendsList();
   } catch (err) {
-    toast.error('Failed to load friends');
-    console.error(err);
+    console.error('Failed to load friends:', err);
   }
 }
 
@@ -229,8 +226,7 @@ async function loadFriendRequests() {
   try {
     friendRequests.value = await getFriendRequests();
   } catch (err) {
-    toast.error('Failed to load friend requests');
-    console.error(err);
+    console.error('Failed to load friend requests:', err);
   }
 }
 
@@ -244,8 +240,7 @@ async function searchUsers() {
   try {
     searchResults.value = await apiSearchUsers(searchQuery.value);
   } catch (err) {
-    toast.error('Failed to search users');
-    console.error(err);
+    console.error('Failed to search users:', err);
   } finally {
     searchLoading.value = false;
   }
@@ -260,13 +255,12 @@ async function sendFriendRequest(userId) {
     // Also send via API as fallback
     await apiSearchUsers(userId);
     
-    toast.success('Friend request sent');
+    console.log('Friend request sent successfully');
     
     // Refresh friend requests
     await loadFriendRequests();
   } catch (err) {
-    toast.error('Failed to send friend request');
-    console.error(err);
+    console.error('Failed to send friend request:', err);
   }
 }
 
@@ -279,14 +273,13 @@ async function acceptFriendRequest(requestId) {
     // Also accept via API as fallback
     await apiRespondToFriendRequest(requestId, true);
     
-    toast.success('Friend request accepted');
+    console.log('Friend request accepted successfully');
     
     // Refresh friends and friend requests
     await loadFriends();
     await loadFriendRequests();
   } catch (err) {
-    toast.error('Failed to accept friend request');
-    console.error(err);
+    console.error('Failed to accept friend request:', err);
   }
 }
 
@@ -299,13 +292,12 @@ async function rejectFriendRequest(requestId) {
     // Also reject via API as fallback
     await apiRespondToFriendRequest(requestId, false);
     
-    toast.success('Friend request rejected');
+    console.log('Friend request rejected successfully');
     
     // Refresh friend requests
     await loadFriendRequests();
   } catch (err) {
-    toast.error('Failed to reject friend request');
-    console.error(err);
+    console.error('Failed to reject friend request:', err);
   }
 }
 
@@ -314,13 +306,12 @@ async function removeFriend(friendId) {
   try {
     await apiRemoveFriend(friendId);
     
-    toast.success('Friend removed');
+    console.log('Friend removed successfully');
     
     // Refresh friends
     await loadFriends();
   } catch (err) {
-    toast.error('Failed to remove friend');
-    console.error(err);
+    console.error('Failed to remove friend:', err);
   }
 }
 
